@@ -1,16 +1,24 @@
-<html>
-	<style>
-	div {
-		font-size : 40px;
-		font-family: Arial,sans-serif;
-	}
-	</style>
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Sensor Test</title>
+		<style>
+		body {
+			background-color: powderblue;
+		}
+		div {
+			font-size: 40px;
+			font-family: Arial,sans-serif;
+		}
+		</style>
+	</head>
 	<body>
-		<div id="log"></div><br/>
+		<div id="log">v0.3</div><br/>
 		<div id="accX"></div><br/>
 		<div id="accY"></div><br/>
-		<div id="accZ"></div><br/>
-		<div id="accA"></div><br/>
+		<div id="accZ"></div><br/><br/>
+		<div id="accA"></div><br/><br/>
+		<canvas id="history" width="320" height="120"></canvas>
 	</body>
 	<script src="main.js"></script>
 </html>
