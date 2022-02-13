@@ -1,9 +1,16 @@
 function motion(event){
-	document.getElementById('log').innerHTML += ("Accelerometer: "
-	+ event.accelerationIncludingGravity.x + ", "
-	+ event.accelerationIncludingGravity.y + ", "
-	+ event.accelerationIncludingGravity.z
-	) + '<br />';
+	var x = event.accelerationIncludingGravity.x
+	var y = event.accelerationIncludingGravity.y
+	var z = event.accelerationIncludingGravity.z
+	
+	// if(!(x||y||z))
+		// return;
+	
+	document.getElementById('accX').innerHTML = 'x: '+x;
+	document.getElementById('accY').innerHTML = 'y: '+y;
+	document.getElementById('accZ').innerHTML = 'z: '+z;
+	
+	document.getElementById('accA').innerHTML = 'a: '+Math.sqrt(x*x+y*y+z*z);
 }
 
 if(window.DeviceMotionEvent){
