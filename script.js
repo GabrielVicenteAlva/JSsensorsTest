@@ -4,6 +4,9 @@ var canvasWidth = canvas.width;
 var canvasHeight = canvas.height;
 var pxlId = (i,j,k) => 4*(i*canvasWidth+j)+k;
 var hist = Array(canvasWidth);
+var falling = false;
+var bouncing = false;
+var dropTime = 0;
 
 function motion(event){
 	var x = event.accelerationIncludingGravity.x
@@ -39,6 +42,18 @@ function motion(event){
 			
 	ctx.putImageData(id, 0, 0);
 	// console.log(hist)
+	if(!falling && !bouncing && a<1) {
+		falling = true;
+		dropTime = new Date().getTime();
+	}
+	if(falling && a>1) {
+		falling = false;
+		bouncing = true;
+		setTimeout(function(){bouncing=false;},1000);
+		var hit = new Date().getTime() - dropTime;
+		fall = 9.80665*hit*hit/2000000;
+		document.getElementById('fall').innerHTML = 'Caída: '+fall.toFixed(2)+'m';
+	}
 }
 
 if(window.DeviceMotionEvent){
