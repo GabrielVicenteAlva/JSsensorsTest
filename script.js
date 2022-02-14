@@ -1,4 +1,7 @@
-var canvasWidth=320, canvasHeight;
+var canvas = document.getElementById('history');
+var ctx = canvas.getContext('2d');
+var canvasWidth = canvas.width;
+var canvasHeight = canvas.height;
 var pxlId = (i,j,k) => 4*(i*canvasWidth+j)+k;
 var hist = Array(canvasWidth);
 
@@ -18,12 +21,8 @@ function motion(event){
 	hist.shift();
 	hist.push(a);
 	
-	var canvas = document.getElementById('history');
-	var ctx = canvas.getContext('2d');
-	// canvasWidth = canvas.width;
-	canvasHeight = canvas.height;
 	var id = ctx.getImageData(0, 0, canvasWidth, canvasHeight);
-	pixels = id.data;
+	var pixels = id.data;
 	for(var i=0;i<canvasHeight;i++)
 		for(var j=0;j<canvasWidth;j++)
 			for(var k=0;k<4;k++)
@@ -47,3 +46,16 @@ if(window.DeviceMotionEvent){
 }else{
 	document.getElementById('log').innerHTML = "<br>DeviceMotionEvent is not supported";
 }
+
+function requestOrientationPermission(){
+	if(!DeviceOrientationEvent.requestPermission)
+		return;
+	document.getElementById('log').innerHTML = 'Permission required';
+    DeviceOrientationEvent.requestPermission()
+        .then(response => {
+            if (response == 'granted') {
+                window.addEventListener('devicemotion',motion);
+            }
+        })
+        .catch(console.error)
+    }
