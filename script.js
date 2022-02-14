@@ -42,11 +42,11 @@ function motion(event){
 			
 	ctx.putImageData(id, 0, 0);
 	// console.log(hist)
-	if(!falling && !bouncing && a<1) {
+	if(!falling && !bouncing && a<1.5) {
 		falling = true;
 		dropTime = new Date().getTime();
 	}
-	if(falling && a>1) {
+	if(falling && a>1.5) {
 		falling = false;
 		bouncing = true;
 		setTimeout(function(){bouncing=false;},1000);
