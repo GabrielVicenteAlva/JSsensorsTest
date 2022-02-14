@@ -30,11 +30,16 @@ function motion(event){
 				pixels[pxlId(i,j,k)] = 255;
 	
 	for(var i=0;i<canvasWidth;i++)
-		for(var k=0;k<3;k++)
-			if(hist[i]!==undefined)
-				pixels[pxlId(canvasHeight-1-hist[i]*10,i,k)] = 0;
+		for(var k=0;k<3;k++) {
+			if(hist[i]===undefined)
+				continue;
+			h = 10*Math.round(hist[i]);
+			if(h>=0 && h<canvasHeight)
+				pixels[pxlId(canvasHeight-1-h,i,k)] = 0;
+		}
+			
 	ctx.putImageData(id, 0, 0);
-	console.log(hist)
+	// console.log(hist)
 }
 
 if(window.DeviceMotionEvent){
