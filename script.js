@@ -14,13 +14,13 @@ function motion(event){
 	var z = event.accelerationIncludingGravity.z
 	var a = Math.sqrt(x*x+y*y+z*z);
 	
-	// if(!(x||y||z))
-		// return;
+	if(!(x||y||z))
+		x=y=z=0;
 	
-	document.getElementById('accX').innerHTML = 'x: '+x;
-	document.getElementById('accY').innerHTML = 'y: '+y;
-	document.getElementById('accZ').innerHTML = 'z: '+z;
-	document.getElementById('accA').innerHTML = 'a: '+a;
+	document.getElementById('accX').innerHTML = 'x: '+x.toFixed(3);
+	document.getElementById('accY').innerHTML = 'y: '+y.toFixed(3);
+	document.getElementById('accZ').innerHTML = 'z: '+z.toFixed(3);
+	document.getElementById('accA').innerHTML = 'a: '+a.toFixed(3);
 	hist.shift();
 	hist.push(a);
 	
