@@ -33,7 +33,7 @@ function motion(event){
 		for(var k=0;k<3;k++) {
 			if(hist[i]===undefined)
 				continue;
-			h = 10*Math.round(hist[i]);
+			let h = Math.round(10*hist[i]);
 			if(h>=0 && h<canvasHeight)
 				pixels[pxlId(canvasHeight-1-h,i,k)] = 0;
 		}
