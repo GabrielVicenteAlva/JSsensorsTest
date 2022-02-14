@@ -42,20 +42,24 @@ function motion(event){
 }
 
 if(window.DeviceMotionEvent){
-	window.addEventListener("devicemotion", motion, false);
+	window.addEventListener('devicemotion', motion, false);
 }else{
-	document.getElementById('log').innerHTML = "<br>DeviceMotionEvent is not supported";
+	document.getElementById('log').innerHTML = '<br>DeviceMotionEvent is not supported';
 }
 
 function requestOrientationPermission(){
-	if(!DeviceOrientationEvent.requestPermission)
-		return;
-	document.getElementById('log').innerHTML = 'Permission required';
+	document.getElementById('log').innerHTML = '';
+	return;
     DeviceOrientationEvent.requestPermission()
         .then(response => {
             if (response == 'granted') {
                 window.addEventListener('devicemotion',motion);
+				document.getElementById('log').innerHTML = '';
             }
         })
         .catch(console.error)
     }
+
+if(DeviceOrientationEvent.requestPermission) {
+	document.getElementById('log').innerHTML = 'Permission required<br><button onclick="requestOrientationPermission();">Request orientation permission</button>';
+}
